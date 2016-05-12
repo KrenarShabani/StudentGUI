@@ -148,8 +148,8 @@ public class StudentGui extends JFrame {
 				case 0:
 					return Integer.class;
 					
-				case 3:
-					return Integer.class;
+			//	case 3:
+				//	return Integer.class;
 					
 					
 				default:

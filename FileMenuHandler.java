@@ -82,16 +82,24 @@ public class FileMenuHandler implements ActionListener {
 						
 						try
 						{
-							FileWriter write = new FileWriter (StudentGui.jfc.getSelectedFile());
+							FileWriter write = new FileWriter (StudentGui.jfc.getSelectedFile()); // idk why this is crying
 							for(int i = 0; i < StudentGui.tblData.getRowSorter().getViewRowCount(); i++)
 							{
 								for(int j = 1; j < StudentGui.tblData.getColumnCount()-1; j++)
 								{
 									try{
-									write.write((String) StudentGui.tblData.getModel().getValueAt(StudentGui.tblData.convertRowIndexToModel(i), j));
-									}catch(ClassCastException e){
-										write.write((int) StudentGui.tblData.getModel().getValueAt(StudentGui.tblData.convertRowIndexToModel(i), j));
+										if(Integer.class == StudentGui.tblData.getModel().getValueAt(StudentGui.tblData.convertRowIndexToModel(i), j).getClass())
+											write.write((int) StudentGui.tblData.getModel().getValueAt(StudentGui.tblData.convertRowIndexToModel(i), j));
+										else if(Double.class == StudentGui.tblData.getModel().getValueAt(StudentGui.tblData.convertRowIndexToModel(i), j).getClass())
+											write.write(Double.toString((double) StudentGui.tblData.getModel().getValueAt(StudentGui.tblData.convertRowIndexToModel(i), j)));
+										else
+											write.write((String) StudentGui.tblData.getModel().getValueAt(StudentGui.tblData.convertRowIndexToModel(i), j));
 									}
+									
+									catch(ClassCastException e){
+										throw(e);
+									}
+										
 									write.write(", ");
 								}
 								write.write((String) StudentGui.tblData.getModel().getValueAt(StudentGui.tblData.convertRowIndexToModel(i), StudentGui.tblData.getColumnCount()-1));
