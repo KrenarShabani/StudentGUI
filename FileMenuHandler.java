@@ -44,7 +44,7 @@ public class FileMenuHandler implements ActionListener {
 							index++;
 						}
 						rowID++;
-						StudentData[0] = rowID;
+						StudentData[0] = (int)rowID;
 						StudentGui.tblModel.addRow(StudentData);
 					}
 					read.close();

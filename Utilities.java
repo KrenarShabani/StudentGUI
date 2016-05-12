@@ -64,6 +64,7 @@ public class Utilities {
 		}
 		return true;
 	}
+	
 	public static boolean CheckGPA(String check)
 	{
 		if(check.length() == 1)
@@ -77,7 +78,7 @@ public class Utilities {
 			return false;
 		if(!CheckInteger(check.substring(0,1)) | Integer.parseInt(check.substring(0,1)) >= 4 | Integer.parseInt(check.substring(0,1)) < 0 )
 			return false;
-		System.out.print(check.substring(0,1));
+		//System.out.print(check.substring(0,1));
 		if(check.charAt(1) != '.')
 				return false;
 		if(!CheckInteger(check.substring(2)))

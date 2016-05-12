@@ -157,8 +157,8 @@ public abstract class SDialog {
 		student[0] = StudentGui.tblModel.getRowCount()+1;
 		student[1] = getFNText().getText();
 		student[2] = getLNText().getText();
-		student[3] = getCUNYText().getText();
-		student[4] = getGPAText().getText();
+		student[3] = Integer.parseInt(getCUNYText().getText());
+		student[4] = Double.parseDouble(getGPAText().getText());
 		student[5] = getVENUSText().getText();	
 	}
 	protected int getRow()

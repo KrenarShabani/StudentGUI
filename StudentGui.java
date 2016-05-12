@@ -28,7 +28,7 @@ public class StudentGui extends JFrame {
 	protected static addDialog add = new addDialog();
 	protected static replaceDialog rep = new replaceDialog();
 	protected static deleteDialog del = new deleteDialog();
-	
+
 	FileMenuHandler fmh  = new FileMenuHandler(this);
 	// i hope making everything static is fine
 	public StudentGui(String title, int height, int width) {
@@ -112,6 +112,8 @@ public class StudentGui extends JFrame {
 		JBtn = new JButton ("Export");
 		JBtn.addActionListener( fmh );
 		add(JBtn);
+		
+
 	} 
 
 	protected void createDataMenu(String[] Data)
@@ -125,7 +127,39 @@ public class StudentGui extends JFrame {
 			{
 				return false;
 			}
+
 		};
+		
+		
+		tblData.setModel(new DefaultTableModel()
+		{
+			
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			@SuppressWarnings({ "unchecked", "rawtypes" })
+			@Override
+			public Class getColumnClass(int column)
+			{
+				switch(column)
+				{
+				case 0:
+					return Integer.class;
+					
+				case 3:
+					return Integer.class;
+					
+					
+				default:
+					return String.class;
+				}
+				
+			}
+			
+		});
+		
 		JScrollPane jspData = new JScrollPane(tblData);
 		/////
 		tblModel = (DefaultTableModel)tblData.getModel();
@@ -136,6 +170,7 @@ public class StudentGui extends JFrame {
 		TableRowSorter<TableModel> sorter = 
 				new TableRowSorter<TableModel>(tblData.getModel());
 		tblData.setRowSorter(sorter);
+
 
 		sorter.addRowSorterListener(new RowSorterListener()
 		{
@@ -169,14 +204,27 @@ public class StudentGui extends JFrame {
 		add(jspData);
 
 	}
+	/*void newSorter(TableRowSorter<TableModel> sor)
+	{
+		RowSorter<? super Integer> rf = null;
+		try
+		{
+			
+			
+		}
+		
+	}*/
 	void newFilter(TableRowSorter<TableModel> sor)
 	{
+		
 		RowFilter<? super TableModel, ? super Integer> rf = null; 
 		try
 		{
+			
 			int index = searchOptions.getSelectedIndex();
 			rf = RowFilter.regexFilter(tInput.getText(),index);
 			sor.setRowFilter(rf);
+			System.out.println("enter");
 		}catch(java.util.regex.PatternSyntaxException e)//return if user enters a string unknown in tblData
 		{
 			return;
