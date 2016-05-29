@@ -53,7 +53,7 @@ public class StudentGui extends JFrame {
 		add(searchOptions);
 
 		add (tInput);
-
+		
 		JButton JBtn = new JButton("Add");
 		JBtn.setMnemonic(KeyEvent.VK_N);
 		JBtn.addActionListener(new ActionListener(){
@@ -105,7 +105,7 @@ public class StudentGui extends JFrame {
 		fileMenu.add( item );
 		menuBar.add(fileMenu);
 		menuBar.add(helpMenu);
-
+		
 		setJMenuBar(menuBar);
 
 		createDataMenu(options);
